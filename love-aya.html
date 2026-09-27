@@ -56,3 +56,378 @@
     font-size:18px;
     opacity:0.6;
     animation:fall linear infinite;
+    filter:drop-shadow(0 0 4px rgba(232,163,187,0.4));
+  }
+  @keyframes fall{
+    0%{transform:translateY(-10vh) translateX(0) rotate(0deg);opacity:0;}
+    10%{opacity:0.65;}
+    90%{opacity:0.5;}
+    100%{transform:translateY(110vh) translateX(40px) rotate(360deg);opacity:0;}
+  }
+  .butterfly{
+    position:absolute;
+    font-size:19px;
+    animation:flutter 9s ease-in-out infinite;
+    opacity:0.7;
+  }
+  @keyframes flutter{
+    0%,100%{transform:translate(0,0) rotate(0deg);}
+    25%{transform:translate(30px,-40px) rotate(10deg);}
+    50%{transform:translate(60px,10px) rotate(-8deg);}
+    75%{transform:translate(20px,50px) rotate(6deg);}
+  }
+
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:1px;}
+
+  /* ---------- SCREEN 0 : PINK FLOWER HOME ---------- */
+  #screen-entry .frame-line{
+    position:absolute;
+    inset:18px;
+    border:1px solid rgba(232,163,187,0.18);
+    pointer-events:none;
+    z-index:1;
+  }
+  #screen-entry .eyebrow{
+    font-size:11px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:var(--pink);
+    opacity:0.85;
+    margin-bottom:10px;
+    z-index:2;
+  }
+  #screen-entry h1{
+    font-size:clamp(28px,8vw,40px);
+    color:var(--white);
+    margin-bottom:8px;
+    font-family:'Great Vibes',cursive;
+    font-weight:400;
+    z-index:2;
+  }
+  #screen-entry .subtitle{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--dim);
+    margin-bottom:20px;
+    max-width:280px;
+    line-height:1.6;
+    z-index:2;
+  }
+  .bouquet-home{
+    position:relative;
+    width:260px;
+    height:190px;
+    margin-bottom:14px;
+    z-index:2;
+  }
+  .bloom{
+    position:absolute;
+    font-size:36px;
+    transform-origin:center bottom;
+    animation:bloomIn 1s cubic-bezier(.3,1.5,.4,1) backwards, sway 4s ease-in-out infinite;
+    filter:drop-shadow(0 0 10px rgba(232,163,187,0.35));
+  }
+  @keyframes bloomIn{
+    0%{transform:scale(0) rotate(0deg);opacity:0;}
+    100%{transform:scale(1) rotate(var(--rot,0deg));opacity:1;}
+  }
+  @keyframes sway{
+    0%,100%{transform:rotate(var(--rot,0deg)) translateY(0);}
+    50%{transform:rotate(calc(var(--rot,0deg) + 3deg)) translateY(-4px);}
+  }
+  .enter-btn{
+    margin-top:6px;
+    padding:11px 30px;
+    background:transparent;
+    border:1px solid var(--pink);
+    color:var(--pink-soft);
+    border-radius:30px;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all .3s;
+    z-index:2;
+    animation:hintPulse 2.4s ease-in-out infinite;
+  }
+  .enter-btn:hover{background:var(--pink);color:#20141a;}
+  @keyframes hintPulse{
+    0%,100%{box-shadow:0 0 0 rgba(232,163,187,0);}
+    50%{box-shadow:0 0 18px rgba(232,163,187,0.35);}
+  }
+  #screen-entry .deco-row{
+    margin-top:22px;
+    font-size:14px;
+    letter-spacing:10px;
+    color:var(--pink);
+    opacity:0.55;
+    z-index:2;
+  }
+
+  /* ---------- SCREEN 1 : LETTER ---------- */
+  #screen-letter{
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+  }
+  .letter-box{
+    max-width:560px;
+    max-height:70dvh;
+    overflow-y:auto;
+    z-index:2;
+    padding:30px 24px;
+    border:1px solid rgba(232,163,187,0.25);
+    border-radius:6px;
+    background:rgba(255,255,255,0.02);
+    backdrop-filter:blur(2px);
+  }
+  .letter-box::-webkit-scrollbar{width:4px;}
+  .letter-box::-webkit-scrollbar-thumb{background:rgba(232,163,187,0.35);border-radius:4px;}
+  .letter-box .deco{
+    font-size:20px;
+    color:var(--pink);
+    margin-bottom:12px;
+  }
+  .letter-box p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(15px,4vw,18px);
+    line-height:1.75;
+    color:var(--white);
+    font-style:italic;
+    white-space:pre-line;
+    text-align:left;
+  }
+  .letter-box .signoff{
+    margin-top:18px;
+    font-size:22px;
+    color:var(--gold);
+    letter-spacing:1px;
+  }
+  .next-btn{
+    margin-top:18px;
+    padding:9px 28px;
+    background:transparent;
+    border:1px solid var(--pink);
+    color:var(--pink-soft);
+    border-radius:30px;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all .3s;
+    z-index:2;
+  }
+  .next-btn:hover{background:var(--pink);color:#20141a;}
+
+  /* ---------- SCREEN 2 : I LOVE YOU ---------- */
+  #screen-final{position:relative;}
+  .glow-orb{
+    position:absolute;
+    width:440px;height:440px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(232,163,187,0.30) 0%, rgba(243,201,216,0.12) 45%, transparent 70%);
+    filter:blur(10px);
+    animation:orbPulse 3.5s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes orbPulse{
+    0%,100%{transform:scale(1);opacity:0.7;}
+    50%{transform:scale(1.25);opacity:1;}
+  }
+  .final-stage{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+  .love-text{
+    font-family:'Great Vibes', cursive;
+    font-size:clamp(44px, 16vw, 100px);
+    line-height:1.15;
+    background:linear-gradient(120deg, var(--pink), var(--gold), var(--pink-soft), var(--pink));
+    background-size:300% 300%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shimmer 4s ease-in-out infinite, popIn 1.4s cubic-bezier(.2,1.4,.4,1) both;
+    text-shadow:0 0 60px rgba(232,163,187,0.3);
+    text-align:center;
+    max-width:90vw;
+    padding:0 10px;
+  }
+  .love-text .beat{font-size:0.55em;vertical-align:-0.05em;display:inline-block;animation:heartbeat 1.4s ease-in-out infinite;}
+  @keyframes shimmer{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+  @keyframes popIn{
+    0%{transform:scale(0.3) rotate(-4deg);opacity:0;}
+    55%{transform:scale(1.12) rotate(1deg);opacity:1;}
+    75%{transform:scale(0.96) rotate(0deg);}
+    100%{transform:scale(1);}
+  }
+  @keyframes heartbeat{
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.2);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.15);}
+    60%{transform:scale(1);}
+  }
+  #screen-final .tiny{
+    margin-top:22px;color:var(--dim);font-size:15px;letter-spacing:2px;
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    animation:fadeUp 1.6s ease-out 0.8s both;
+  }
+  @keyframes fadeUp{0%{opacity:0;transform:translateY(14px);}100%{opacity:1;transform:translateY(0);}}
+  .restart-btn{
+    margin-top:34px;padding:9px 26px;background:transparent;border:1px solid var(--pink-soft);
+    color:var(--pink-soft);border-radius:30px;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+    cursor:pointer;transition:all .3s;animation:fadeUp 1.6s ease-out 1.2s both;
+  }
+  .restart-btn:hover{background:var(--pink-soft);color:#20141a;}
+  .rising-heart{
+    position:absolute;bottom:-10%;font-size:16px;opacity:0;
+    animation:rise linear infinite;z-index:1;
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0) scale(0.8);opacity:0;}
+    12%{opacity:0.85;}88%{opacity:0.6;}
+    100%{transform:translateY(-115vh) translateX(var(--drift,20px)) scale(1.1);opacity:0;}
+  }
+
+  .sparkle{
+    position:absolute;color:var(--pink-soft);font-size:14px;
+    animation:twinkle 2.4s ease-in-out infinite;z-index:1;
+  }
+  @keyframes twinkle{0%,100%{opacity:0.2;transform:scale(0.8);}50%{opacity:1;transform:scale(1.2);}}
+
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;}}
+</style>
+</head>
+<body>
+
+<div class="ambience" id="ambience"></div>
+
+<!-- SCREEN 0: PINK FLOWER HOME -->
+<div class="screen active" id="screen-entry">
+  <div class="frame-line"></div>
+  <div class="eyebrow">untuk kamu</div>
+  <h1>Sayang</h1>
+  <p class="subtitle">ada sesuatu yang ingin aku sampaikan ke kamu</p>
+  <div class="bouquet-home" id="bouquetHome"></div>
+  <button class="enter-btn" onclick="goTo('screen-letter')">buka pesan</button>
+  <div class="deco-row">🌸 ✧ 🌸</div>
+</div>
+
+<!-- SCREEN 1: LETTER -->
+<div class="screen" id="screen-letter">
+  <div style="display:flex;flex-direction:column;align-items:center;max-height:100%;">
+    <div class="letter-box">
+      <div class="deco">🌸 ✧ 🌸</div>
+      <p id="letterText"></p>
+      <div class="signoff">Maafin aku ya, sayang. 🌸</div>
+    </div>
+    <button class="next-btn" onclick="goTo('screen-final')">continue →</button>
+  </div>
+</div>
+
+<!-- SCREEN 2: I LOVE YOU -->
+<div class="screen" id="screen-final">
+  <div class="glow-orb"></div>
+  <div class="final-stage">
+    <div class="love-text">I Love You <span class="beat">🌸</span></div>
+    <div class="tiny">tenang ya, aku di sini</div>
+    <button class="restart-btn" onclick="goTo('screen-entry')">↺ replay</button>
+  </div>
+</div>
+
+<script>
+const letterContent = `Sayang, maafin aku ya.
+
+Aku tahu kamu lagi sedih, kesel, dan bete, dan aku minta maaf kalau ada sikap atau kata-kata aku yang bikin kamu jadi ngerasa kayak gini. Aku gak pernah mau lihat kamu ngerasa gak nyaman apalagi sampai sesedih ini, dan kalau itu karena aku, aku bener-bener minta maaf dari hati aku yang paling dalam.
+
+Aku tahu perasaan kamu itu valid, kamu berhak buat marah atau kecewa kalau memang ada yang salah dari aku. Aku gak akan bilang "udah jangan sedih" tanpa ngerti apa yang kamu rasain, karena aku tahu itu gak segampang itu. Yang aku mau kamu tahu adalah, aku ada di sini, dengerin kamu, dan aku mau benerin apapun yang bikin kamu ngerasa kayak gini.
+
+Kamu gak sendirian, sayang. Pelan-pelan aja gak apa-apa, kamu gak harus buru-buru baikan atau pura-pura gak apa-apa kalau memang belum. Aku cuma pengen kamu tahu, sesibuk atau serumit apapun keadaannya, kamu tetap orang yang paling aku pedulikan.
+
+Maafin aku kalau aku ada salah, sengaja atau nggak sengaja. Aku sayang kamu, dan aku gak suka lihat kamu sedih karena aku. Pelukan dari jauh buat kamu, semoga hati kamu pelan-pelan tenang lagi ya.`;
+
+document.getElementById('letterText').textContent = letterContent;
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(id === 'screen-final') buildRisingHearts();
+}
+
+function buildRisingHearts(){
+  const screen = document.getElementById('screen-final');
+  if(screen.dataset.built) return;
+  screen.dataset.built = "1";
+  const emojis = ['🌸','💗','✦'];
+  for(let i=0;i<12;i++){
+    const h = document.createElement('div');
+    h.className = 'rising-heart';
+    h.textContent = emojis[i % emojis.length];
+    h.style.left = Math.random()*100 + '%';
+    h.style.setProperty('--drift', (Math.random()*80 - 40) + 'px');
+    h.style.animationDuration = (6 + Math.random()*6) + 's';
+    h.style.animationDelay = (Math.random()*7) + 's';
+    h.style.fontSize = (12 + Math.random()*10) + 'px';
+    screen.appendChild(h);
+  }
+}
+
+/* pink bouquet on home screen */
+const bouquetEmojis = ['🌸','🌷','🌺','💮'];
+const bqHome = document.getElementById('bouquetHome');
+const positions = [
+  {x:110,y:70,rot:-8,delay:0.05,size:34},
+  {x:75,y:95,rot:-18,delay:0.15,size:28},
+  {x:150,y:95,rot:16,delay:0.25,size:28},
+  {x:50,y:120,rot:-26,delay:0.35,size:26},
+  {x:175,y:120,rot:24,delay:0.45,size:26},
+  {x:95,y:50,rot:-4,delay:0.55,size:28},
+  {x:130,y:50,rot:6,delay:0.65,size:28},
+  {x:110,y:110,rot:2,delay:0.75,size:30},
+];
+positions.forEach((p,idx)=>{
+  const f = document.createElement('div');
+  f.className = 'bloom';
+  f.textContent = bouquetEmojis[idx % bouquetEmojis.length];
+  f.style.left = p.x + 'px';
+  f.style.top = p.y + 'px';
+  f.style.setProperty('--rot', p.rot + 'deg');
+  f.style.animationDelay = p.delay + 's, ' + (1 + p.delay) + 's';
+  f.style.fontSize = p.size + 'px';
+  bqHome.appendChild(f);
+});
+
+/* ambient petals + butterflies + sparkles */
+const ambience = document.getElementById('ambience');
+const petalEmojis = ['🌸','🌺','🌷','💮'];
+for(let i=0;i<14;i++){
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petalEmojis[i % petalEmojis.length];
+  p.style.left = Math.random()*100 + 'vw';
+  p.style.animationDuration = (8 + Math.random()*10) + 's';
+  p.style.animationDelay = (Math.random()*10) + 's';
+  p.style.fontSize = (12 + Math.random()*14) + 'px';
+  ambience.appendChild(p);
+}
+for(let i=0;i<5;i++){
+  const b = document.createElement('div');
+  b.className = 'butterfly';
+  b.textContent = '🦋';
+  b.style.left = (5 + Math.random()*90) + 'vw';
+  b.style.top = (10 + Math.random()*80) + 'vh';
+  b.style.animationDuration = (7 + Math.random()*5) + 's';
+  b.style.animationDelay = (Math.random()*4) + 's';
+  ambience.appendChild(b);
+}
+for(let i=0;i<18;i++){
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.textContent = '✦';
+  s.style.left = Math.random()*100 + 'vw';
+  s.style.top = Math.random()*100 + 'vh';
+  s.style.animationDelay = (Math.random()*3) + 's';
+  ambience.appendChild(s);
+}
+</script>
+</body>
+</html>
