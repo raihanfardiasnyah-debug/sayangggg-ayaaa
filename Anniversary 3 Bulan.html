@@ -1,0 +1,392 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Anniversary 3 Bulan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: satu panggung layar penuh, empat halaman bergantian. Latar hitam-pink, kelopak dan bintang jatuh di canvas belakang. */
+:root {
+  --bg: #0b0309;
+  --bg-mid: #3a0a22;
+  --bg-hot: #b0245f;
+  --ink: #fff0f6;
+  --ink-soft: #f7c6dc;
+  --pink: #ff7eb6;
+  --pink-deep: #e0407f;
+  --glow: rgba(255, 126, 182, 0.55);
+  --card: rgba(20, 4, 12, 0.55);
+  --card-line: rgba(255, 150, 200, 0.28);
+  --font-display: "Pacifico", "Brush Script MT", cursive;
+  --font-body: "Quicksand", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--bg);
+  background-image: linear-gradient(165deg, var(--bg) 0%, var(--bg-mid) 52%, var(--bg-hot) 140%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.75;
+  padding-block: 20px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+#fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.page {
+  position: relative; z-index: 1;
+  max-width: 640px; margin: 0 auto;
+  min-height: calc(100vh - 40px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 22px; text-align: center;
+  animation: fadeIn 0.9s ease both;
+}
+.page[hidden] { display: none; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 8vw, 46px);
+  line-height: 1.35;
+  text-wrap: balance;
+  color: var(--ink);
+  text-shadow: 0 0 22px var(--glow);
+  margin: 0;
+}
+.eyebrow {
+  font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--pink); font-weight: 700; margin: 0;
+}
+.hint { margin: 0; color: var(--ink-soft); font-size: 15px; }
+
+/* Password */
+.gate { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; }
+.gate input {
+  width: min(280px, 100%);
+  background: var(--card); border: 1px solid var(--card-line); border-radius: 999px;
+  color: var(--ink); font: 600 22px var(--font-body); letter-spacing: 0.5em; text-align: center;
+  padding: 12px 18px 12px calc(18px + 0.5em);
+}
+.gate input::placeholder { letter-spacing: 0.1em; font-size: 15px; font-weight: 500; color: var(--ink-soft); opacity: 0.7; }
+.gate input:focus-visible, .btn:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+.err { min-height: 1.5em; margin: 0; color: #ffb3d1; font-size: 15px; }
+.shake { animation: shake 0.45s; }
+@keyframes shake { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+
+.btn {
+  font: 700 17px var(--font-body);
+  color: #2a0516; background: linear-gradient(135deg, #ffb3d4, var(--pink) 55%, var(--pink-deep));
+  border: 0; border-radius: 999px; padding: 13px 30px; cursor: pointer;
+  box-shadow: 0 8px 28px rgba(255, 90, 160, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 34px rgba(255, 90, 160, 0.55); }
+.btn:active { transform: scale(0.98); }
+
+/* Teks mengetik */
+.letter {
+  width: 100%; text-align: left;
+  background: var(--card); border: 1px solid var(--card-line); border-radius: 20px;
+  padding: 22px 20px; backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+.letter p { margin: 0 0 1em; color: var(--ink); overflow-wrap: anywhere; }
+.letter p:last-child { margin-bottom: 0; }
+.caret {
+  display: inline-block; width: 2px; height: 1.1em; background: var(--pink);
+  vertical-align: text-bottom; margin-left: 2px; animation: blink 0.8s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.skip { font-size: 13px; color: var(--ink-soft); opacity: 0.75; margin: 0; }
+.next { transition: opacity 0.6s; }
+.next[hidden] { display: none; }
+
+/* Buket */
+.bouquet { width: min(250px, 70vw); height: auto; filter: drop-shadow(0 10px 30px rgba(255, 90, 160, 0.45)); animation: sway 5s ease-in-out infinite; transform-origin: 50% 95%; }
+@keyframes sway { 50% { transform: rotate(2.5deg); } }
+
+/* Halaman 4 */
+.big {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(64px, 24vw, 170px);
+  line-height: 1.02;
+  margin: 0;
+  background: linear-gradient(180deg, #fff 0%, #ffc2dd 45%, var(--pink) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 26px var(--glow));
+  animation: beat 1.6s ease-in-out infinite;
+}
+.big span { display: block; }
+@keyframes beat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.05); } 28% { transform: scale(1); } 42% { transform: scale(1.04); } }
+.sub { font-family: var(--font-display); font-size: clamp(24px, 6.4vw, 34px); line-height: 1.45; margin: 0; color: var(--ink); text-wrap: balance; text-shadow: 0 0 16px var(--glow); }
+.date { font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page, .bouquet, .big { animation: none; }
+  .caret { animation: none; }
+}
+</style>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<main>
+  <!-- Halaman 1 -->
+  <section class="page" id="p1">
+    <svg class="bouquet" id="bouquet" viewBox="0 0 240 270" role="img" aria-label="Buket enam bunga pink"></svg>
+    <p class="eyebrow">Khusus buat kamu</p>
+    <h1>Ada kejutan kecil buat kamu, sayaangg</h1>
+    <form class="gate" id="gate" autocomplete="off">
+      <label class="hint" for="pw">Masukkan password dulu yaa</label>
+      <input id="pw" type="password" inputmode="numeric" maxlength="6" placeholder="• • • • • •" aria-describedby="err">
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn" type="submit">Buka kejutannya</button>
+    </form>
+  </section>
+
+  <!-- Halaman 2 -->
+  <section class="page" id="p2" hidden>
+    <h1>Selamat Unniversary ke 3 bulann yaa sayaaanggg</h1>
+    <div class="letter" id="t2" aria-live="polite"></div>
+    <p class="skip" id="s2">Ketuk kotak tulisan untuk melewati ketikan</p>
+    <button class="btn next" id="n2" type="button" hidden>Lanjut ke halaman 3</button>
+  </section>
+
+  <!-- Halaman 3 -->
+  <section class="page" id="p3" hidden>
+    <h1>Maaff kann akuu yaa sayaanggg untukk selamaa inii</h1>
+    <div class="letter" id="t3" aria-live="polite"></div>
+    <p class="skip" id="s3">Ketuk kotak tulisan untuk melewati ketikan</p>
+    <button class="btn next" id="n3" type="button" hidden>Lanjut ke halaman terakhir</button>
+  </section>
+
+  <!-- Halaman 4 -->
+  <section class="page" id="p4" hidden>
+    <p class="date">10 Agustus 2026 &rarr; 10 November 2026</p>
+    <h2 class="big" aria-label="I love you"><span>I LOVE</span><span>YOU</span></h2>
+    <p class="sub" id="t4"></p>
+  </section>
+</main>
+
+<script>
+(function () {
+  var PASSWORD = "100826";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var TEXT2 = [
+    "Selamattt yaaa sayaaangggg, hari inii udahh 3 bulann kitaa barengg-barengg. Rasanyaa tuhh baruu kemarenn akuu kenalann samaa kamuu, tapii sekarangg kamuu udahh jadii orangg yangg palinggg akuu cariii pas akuu lagii seneng ataupunn lagii sediihh. Makasihh yaa sayaangg udahh mauu sabarr, mauu nemenin akuu, dann mauu nerimaa akuu apaa adanyaa.",
+    "Tigaa bulann memangg belumm lamaa, tapii buatt akuu setiapp harinyaa berhargaaa bangetttt. Dari ngobrol panjangg sampaii ketawaa bareng hal-hal kecill, semuanyaa bikinn akuu ngerasaa kalauu akuu beruntungg bangett bisaa ketemuu kamuu. Kamuu bikinn hariku jadii lebihh berwarnaa, lebihh hangatt, dann lebihh punyaa alasann buatt semangatt terusss.",
+    "Akuu cumaa pengenn kitaa terusss bareng-bareng sampaii bulann keee-4, keee-5, keee-10, bahkann sampaii tahunn-tahunn yangg panjangg. Semogaa kitaa selaluu saling jagaa, saling percayaa, dann saling sayangg yaa. Sekalii lagii, selamattt unniversary ke 3 bulann, sayaanggkuu. Akuu sayangg bangettt samaa kamuu."
+  ];
+  var TEXT3 = [
+    "Sayaangg, akuu mauu minta maaff yaa untukk semuaa kesalahann akuu selamaa inii. Kadangg akuu masihh egoiss, masihh suka salahh ngomongg, dann masihh suka bikinn kamuu kesell ataupunn sediihh tanpaa akuu sadarr. Kalauu ada kataa-kataa akuu yangg nyakitinn kamuu, akuu minta maaff dari hatii yangg palinggg dalamm.",
+    "Akuu jugaa sadarr kalauu akuu masihh kurangg banyakk dalamm mencintaii kamuu. Masihh adaa harii dimanaa akuu kurangg perhatiann, kurangg pekaa, dann kurangg ngasihh waktuu yangg kamuu butuhinn. Padahall kamuu udahh ngasihh banyakk bangettt buatt akuu, dann akuu pengenn bisaa ngebalass semuanyaa dengann lebihh baikk lagii.",
+    "Makasihh yaa udahh tetapp bertahann dann sabarr ngadepinn akuu yangg belumm sempurnaa inii. Akuu gakk mintaa kamuu lupainn semuanyaa, akuu cumaa mintaa kesempatann buatt terusss belajarr jadii pasangann yangg lebihh baikk, lebihh dewasaa, dann lebihh pandaii jagaa perasaann kamuu.",
+    "Janjiku, akuu bakall terusss berusahaa buatt nyayangin kamuu dengann cara yangg lebihh baikk setiapp harinyaa. Kalauu nanti akuu salahh lagii, tolongg ingetinn akuu pelann-pelann yaa, sayaangg. Sekalii lagii, maaffin akuu yaa, akuu sayangg bangettt samaa kamuu."
+  ];
+  var TEXT4 = "I love youuu sayaaangggg, akuu sayangg bangettt samaa kamuu, selamanyaa dann selamanyaa.";
+
+  /* ---------- Buket 6 bunga ---------- */
+  (function bouquet() {
+    var svg = document.getElementById("bouquet");
+    var s = '<defs>' +
+      '<radialGradient id="pg" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#ffd1e6"/><stop offset="0.6" stop-color="#ff7eb6"/><stop offset="1" stop-color="#d9387a"/></radialGradient>' +
+      '<linearGradient id="rb" x1="0" x2="1"><stop offset="0" stop-color="#ff9cc8"/><stop offset="1" stop-color="#d9387a"/></linearGradient>' +
+      '</defs>';
+    var flowers = [
+      [120, 42, 25], [68, 74, 23], [172, 74, 23], [42, 120, 21], [198, 120, 21], [120, 108, 26]
+    ];
+    var i, f;
+    // batang
+    for (i = 0; i < flowers.length; i++) {
+      f = flowers[i];
+      s += '<path d="M' + f[0] + ' ' + f[1] + ' Q' + ((f[0] + 120) / 2) + ' ' + (f[1] + 90) + ' 120 222" stroke="#3b8f5a" stroke-width="3.5" fill="none" stroke-linecap="round"/>';
+    }
+    // daun
+    s += '<path d="M120 190 C90 170 70 175 62 160 C88 158 108 168 120 190Z" fill="#3b8f5a"/>';
+    s += '<path d="M120 190 C150 170 170 175 178 160 C152 158 132 168 120 190Z" fill="#46a56a"/>';
+    // bunga
+    for (i = 0; i < flowers.length; i++) {
+      f = flowers[i];
+      var cx = f[0], cy = f[1], r = f[2], n = 7, k;
+      for (k = 0; k < n; k++) {
+        var a = (360 / n) * k;
+        s += '<ellipse cx="' + cx + '" cy="' + (cy - r * 0.55) + '" rx="' + (r * 0.36) + '" ry="' + (r * 0.62) +
+             '" fill="url(#pg)" stroke="#ffd1e6" stroke-opacity="0.5" stroke-width="0.8" transform="rotate(' + a + ' ' + cx + ' ' + cy + ')"/>';
+      }
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.3) + '" fill="#ffe3a8"/>';
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.14) + '" fill="#f0a24c"/>';
+    }
+    // pembungkus + pita
+    s += '<path d="M72 170 L168 170 L134 250 L106 250Z" fill="url(#rb)" opacity="0.95"/>';
+    s += '<path d="M72 170 L168 170 L160 186 L80 186Z" fill="#ffc2dd"/>';
+    s += '<path d="M120 200 C100 192 92 210 104 218 C112 222 118 212 120 204 C122 212 128 222 136 218 C148 210 140 192 120 200Z" fill="#ff4f9a"/>';
+    svg.innerHTML = s;
+  })();
+
+  /* ---------- Efek jatuh: kelopak pink + bintang ---------- */
+  (function fx() {
+    var cv = document.getElementById("fx");
+    var ctx = cv.getContext("2d");
+    var W = 0, H = 0, dpr = 1, petals = [], stars = [], twinkles = [];
+    var PINKS = ["#ff7eb6", "#ff9cc8", "#ffb8d6", "#e0407f", "#ff5fa5", "#ffd1e6"];
+
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function mkPetal(top) {
+      return {
+        x: Math.random() * W, y: top ? -20 - Math.random() * 40 : Math.random() * H,
+        s: 7 + Math.random() * 10, vy: 0.5 + Math.random() * 1.1,
+        ph: Math.random() * 6.28, sw: 0.4 + Math.random() * 0.9,
+        r: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.04,
+        c: PINKS[(Math.random() * PINKS.length) | 0], a: 0.55 + Math.random() * 0.4
+      };
+    }
+    function mkStar() {
+      return { x: Math.random() * W * 1.2, y: -30, len: 70 + Math.random() * 90, v: 5 + Math.random() * 4, a: 0.9 };
+    }
+    function init() {
+      size();
+      var n = Math.max(18, Math.min(46, Math.round(W / 14)));
+      petals = []; twinkles = [];
+      for (var i = 0; i < n; i++) petals.push(mkPetal(false));
+      for (var j = 0; j < 40; j++) twinkles.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.3 + 0.3, p: Math.random() * 6.28 });
+    }
+    function drawPetal(p) {
+      ctx.save();
+      ctx.translate(p.x, p.y); ctx.rotate(p.r);
+      ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
+      ctx.beginPath();
+      ctx.moveTo(0, -p.s);
+      ctx.bezierCurveTo(p.s * 0.9, -p.s * 0.6, p.s * 0.7, p.s * 0.7, 0, p.s);
+      ctx.bezierCurveTo(-p.s * 0.7, p.s * 0.7, -p.s * 0.9, -p.s * 0.6, 0, -p.s);
+      ctx.fill();
+      ctx.restore();
+    }
+    function drawStar(s) {
+      var dx = -0.55, dy = 1, m = Math.sqrt(dx * dx + dy * dy);
+      var ex = s.x - (dx / m) * s.len, ey = s.y - (dy / m) * s.len;
+      var g = ctx.createLinearGradient(s.x, s.y, ex, ey);
+      g.addColorStop(0, "rgba(255,255,255," + s.a + ")");
+      g.addColorStop(1, "rgba(255,126,182,0)");
+      ctx.globalAlpha = 1; ctx.strokeStyle = g; ctx.lineWidth = 2; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(ex, ey); ctx.stroke();
+      ctx.fillStyle = "rgba(255,255,255," + s.a + ")";
+      ctx.beginPath(); ctx.arc(s.x, s.y, 2.2, 0, 6.28); ctx.fill();
+    }
+    var t = 0;
+    function frame() {
+      t += 1;
+      ctx.clearRect(0, 0, W, H);
+      var i;
+      for (i = 0; i < twinkles.length; i++) {
+        var w = twinkles[i];
+        ctx.globalAlpha = 0.25 + 0.5 * Math.abs(Math.sin(t * 0.02 + w.p));
+        ctx.fillStyle = "#ffe3f0";
+        ctx.beginPath(); ctx.arc(w.x, w.y, w.r, 0, 6.28); ctx.fill();
+      }
+      for (i = 0; i < petals.length; i++) {
+        var p = petals[i];
+        p.y += p.vy; p.x += Math.sin(t * 0.02 + p.ph) * p.sw; p.r += p.vr;
+        if (p.y > H + 30) petals[i] = mkPetal(true);
+        drawPetal(p);
+      }
+      if (Math.random() < 0.018 && stars.length < 4) stars.push(mkStar());
+      for (i = stars.length - 1; i >= 0; i--) {
+        var s = stars[i];
+        s.x -= s.v * 0.55; s.y += s.v; s.a -= 0.003;
+        if (s.y > H + 120 || s.a <= 0) { stars.splice(i, 1); continue; }
+        drawStar(s);
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    }
+    init();
+    window.addEventListener("resize", init);
+    if (reduce) { for (var i = 0; i < petals.length; i++) drawPetal(petals[i]); return; }
+    requestAnimationFrame(frame);
+  })();
+
+  /* ---------- Navigasi halaman ---------- */
+  function show(id) {
+    var ids = ["p1", "p2", "p3", "p4"];
+    for (var i = 0; i < ids.length; i++) document.getElementById(ids[i]).hidden = ids[i] !== id;
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- Efek mengetik ---------- */
+  function typeParagraphs(box, paras, speed, onDone) {
+    box.innerHTML = "";
+    var skipped = false, finished = false, pi = 0, ci = 0, cur = null, caret = document.createElement("span");
+    caret.className = "caret";
+    function finish() {
+      if (finished) return;
+      finished = true;
+      box.innerHTML = "";
+      for (var i = 0; i < paras.length; i++) {
+        var p = document.createElement("p"); p.textContent = paras[i]; box.appendChild(p);
+      }
+      onDone();
+    }
+    box.onclick = function () { skipped = true; finish(); };
+    if (reduce) { finish(); return; }
+    function step() {
+      if (finished) return;
+      if (pi >= paras.length) { caret.remove(); finished = true; onDone(); return; }
+      if (!cur) { cur = document.createElement("p"); box.appendChild(cur); cur.appendChild(caret); }
+      var text = paras[pi];
+      if (ci < text.length) {
+        cur.insertBefore(document.createTextNode(text.charAt(ci)), caret);
+        var ch = text.charAt(ci); ci++;
+        setTimeout(step, /[.,!?]/.test(ch) ? speed * 6 : speed);
+      } else {
+        pi++; ci = 0; cur = null;
+        setTimeout(step, 350);
+      }
+    }
+    step();
+  }
+  function typeLine(el, text, speed) {
+    if (reduce) { el.textContent = text; return; }
+    el.textContent = ""; var i = 0;
+    (function go() { if (i < text.length) { el.textContent += text.charAt(i++); setTimeout(go, speed); } })();
+  }
+
+  function runPage(boxId, paras, skipId, nextId) {
+    var next = document.getElementById(nextId), skip = document.getElementById(skipId);
+    next.hidden = true; skip.hidden = false;
+    typeParagraphs(document.getElementById(boxId), paras, 42, function () {
+      skip.hidden = true; next.hidden = false;
+    });
+  }
+
+  /* ---------- Password ---------- */
+  var gate = document.getElementById("gate"), pw = document.getElementById("pw"), err = document.getElementById("err");
+  gate.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (pw.value.trim() === PASSWORD) {
+      err.textContent = "";
+      show("p2");
+      runPage("t2", TEXT2, "s2", "n2");
+    } else {
+      err.textContent = "Passwordnya belumm bener yaa sayaangg, cobaa ingett tanggall pentingg kitaa.";
+      gate.classList.remove("shake"); void gate.offsetWidth; gate.classList.add("shake");
+      pw.select();
+    }
+  });
+  document.getElementById("n2").addEventListener("click", function () {
+    show("p3"); runPage("t3", TEXT3, "s3", "n3");
+  });
+  document.getElementById("n3").addEventListener("click", function () {
+    show("p4"); typeLine(document.getElementById("t4"), TEXT4, 55);
+  });
+})();
+</script>
+
+</body></html>
